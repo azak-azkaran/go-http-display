@@ -9,7 +9,11 @@ import (
 func handleHttp(w http.ResponseWriter, r *http.Request) {
 	log.Println("http Header:", r.Header)
 	fmt.Fprintln(w, "Hello World")
-	fmt.Fprintln(w, r.Header)
+	fmt.Println(w, " You are from: ", r.RemoteAddr)
+
+	for key, element := range r.Header {
+		fmt.Fprintf(w, "%s: %s\n", key, element)
+	}
 }
 
 func main() {
